@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+    //Prompt user for change (positive double)
+    double change;
+    do
+    {
+        change = get_double("How much change is owed: ");
+    }
+    while (change < 0);
+
+    int i = change * 100;
+
+    //denominate coins
+    int quarter = 25;
+    int dime = 10;
+    int nickel = 5;
+
+    //divide and modulus
+    int a = i / quarter;
+    int m1 = i % quarter;
+    int b = m1 / dime;
+    int m2 = m1 % dime;
+    int c = m2 / nickel;
+    int m3 = m2 % nickel;
+
+    //total amount of fewest coins possible
+    int coins = a + b + c + m3;
+
+    printf("%i\n", coins);
+}
