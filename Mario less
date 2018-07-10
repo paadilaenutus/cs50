@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+    //Prompt user for a positive number up to 23
+    int n;
+    do
+    {
+        n = get_int("Positive number up to 23: ");
+    }
+    while (n < 0 || n > 23);
+
+    //Print out that many rows
+    for (int i = 0; i < n; i++)
+    {
+        //print out that many spaces
+        for (int k = n; k >= i + 2; k--)
+        {
+            printf(" ");
+        }
+        //print out that many columns
+        for (int j = -1; j <= i; j++)
+        {
+            printf("#");
+        }
+        printf("\n");
+    }
+}
