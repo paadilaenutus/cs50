@@ -1,0 +1,59 @@
+#include <cs50.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, string argv[])
+{
+    if (argc != 2)      //check that there are no more than 2 command line arguments
+    {
+        printf("R U Buffoon?\n");
+        return 1;
+    }
+
+    for (int j = 0, m = strlen(argv[1]); j < m; j++)    //check that the command line argument consists of alphabetic characters
+    {
+        if (isalpha(argv[1][j]))
+        {}
+        else
+        {
+            printf("R U Buffoon?\n");
+            return 1;
+        }
+    }
+
+    string s = argv[1];     //cipher now string s
+    int slength = strlen(s);    //slength is the length of it
+
+    string p = get_string("plaintext: "); //prompt for plaintext
+    int counter = 0; //initiate counter for cipher characters
+
+    printf("ciphertext: ");
+    for (int i = 0, n = strlen(p); i < n; i++)
+    {
+        if (isalpha(p[i]))
+        {
+            int mod = counter % slength; //mod never increases beyond the amount of cipher characters, counter increases only in case of alphabetic characters of plaintext
+            counter++;
+            int cap = toupper(s[mod]); //capitalises the cipher letter to make calculations easier a bit
+            if (isupper(p[i]))
+            {
+                int x = (p[i] - 'A' + (cap - 'A')) % 26;
+                int A = x + 'A';
+                printf("%c", A);
+            }
+            else
+            {
+                int y = (p[i] - 'a' + (cap - 'A')) % 26;
+                int a = y + 'a';
+                printf("%c", a);
+            }
+        }
+        else    //prints out all non-alphabetic characters unchanged, counter unchanged
+        {
+            printf("%c", p[i]);
+        }
+    }
+    printf("\n");
+}
